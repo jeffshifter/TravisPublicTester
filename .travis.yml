@@ -1,24 +1,26 @@
 language: php
 php:
-  - 5.6
-
+- 5.6
 branches:
   only:
-    - development
-    - staging
-    - production
-    - master
-
+  - development
+  - staging
+  - production
 install:
-  # Install Screener CI Script
-  - curl -O https://s3-us-west-2.amazonaws.com/screener-files/ci/v2.1/screener-ci.zip
-  - unzip -o screener-ci.zip
-
-
+- curl -O https://s3-us-west-2.amazonaws.com/screener-files/ci/v2.1/screener-ci.zip
+- unzip -o screener-ci.zip
 script:
-  - phpunit Test.php
-  # Run Screener Tests
-  - ./screener-ci.sh $SCREENER_API_KEY $SCREENER_GROUP_ID $TRAVIS_BUILD_NUMBER
-
+- phpunit Test.php
+- "./screener-ci.sh $SCREENER_API_KEY $SCREENER_GROUP_ID $TRAVIS_BUILD_NUMBER"
+after_success:
+- "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
+- "chmod a+x /tmp/travis-automerge"
+- "BRANCHES_TO_MERGE_REGEX='development' BRANCH_TO_MERGE_INTO=staging GITHUB_REPO=cdown/srt /tmp/travis-automerge"
+- echo "good job"
+after_failure:
+- echo "bad"
 after_script:
-  - echo "good job"
+- echo "done"
+env:
+  global:
+    secure: pRhdSAOAPFyPh8vZKytDzCISoFaEm6aeeHxvoiouP1+UIgveVx4dyxrUVmSuV4ksu0Iy4JvNXeY5Gypq0uGSFcLGuxIODgcozrC0Tkia936qYFS3tS5T078S8NPrTYWvcqXCALcZT5lFArlCS4pMQUMjsNDeKj2eTxL5kbzEnNliQiAH3acHo7hY9GHMcyHgpQLkkbliRV1vI6Jbn9P69aY2fzrDaMYJ9c/wiz9HVwYh90GIZ5PtcZtvd66jv4iTzdGkv+zvrhnlFr4zT+XGFwAE6Yy9x/PmLpd1Sx0Kz8I3DIrCS/EefZpgBBzDM0IZWiahAl7lCENBHi6mpT9HLLn+wreU47F1vP9ZZ+PcQAxnRi7+woOlHAV5YEUiF8ALjs82J76OtEpIZMDiLPAAXVfDJh7gjU4Un85eXENdMeWnByAUfOmXSxHYqJ0Y/dH9jbkNl09jQYhIv5oSeQOELtFu1YkeUzMWu+RUIPiCLf93Nwi1exSr4KYVKfFIFa602NmtGa9wPc54aWFrkpIEcSU6R4lLnBWV6UAXTniBAt6ZG1i6ynqEIhiONIhsPNUMM7oO1Q8gPJtyZqEE7Pb9+M15mQeCx0KjwxiLbSYuS91vmHAM4X54v2ANnyFCKpFWePf55sVaIsddOSr4PkqpWfv/F9JJzFKi9rK01UBR8pM=

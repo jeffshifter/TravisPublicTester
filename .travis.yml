@@ -20,7 +20,8 @@ script:
 #- "./screener-ci.sh $SCREENER_API_KEY $SCREENER_GROUP_ID $TRAVIS_BUILD_NUMBER"
 - if [ "$TRAVIS_BRANCH" = "staging" ]; then phpunit StagingTest.php; fi
 after_success:
-- "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
+# - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
+- "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/jeffshifter/TravisPublicTester/development/travis-automerge.sh"
 - "chmod a+x /tmp/travis-automerge"
 - "BRANCHES_TO_MERGE_REGEX='development' BRANCH_TO_MERGE_INTO=staging GITHUB_REPO=jeffshifter/TravisPublicTester /tmp/travis-automerge"
 - "BRANCHES_TO_MERGE_REGEX='staging' BRANCH_TO_MERGE_INTO=production GITHUB_REPO=jeffshifter/TravisPublicTester /tmp/travis-automerge"

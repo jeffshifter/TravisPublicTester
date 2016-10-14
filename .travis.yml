@@ -12,6 +12,7 @@ install:
 script:
 - phpunit Test.php
 #- "./screener-ci.sh $SCREENER_API_KEY $SCREENER_GROUP_ID $TRAVIS_BUILD_NUMBER"
+- if [ "$TRAVIS_BRANCH" = "development" ]; then echo "run script just for this branch"; fi
 after_success:
 - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
 - "chmod a+x /tmp/travis-automerge"

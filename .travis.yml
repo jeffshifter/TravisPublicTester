@@ -10,8 +10,8 @@ notifications: # set notification options, By default, a build email is sent to 
   email: #false to disable
     recipients:
       - jeff@powershifter.com
-    on_success: always #[always|never|change]
-    on_failure: always #[always|never|change]
+    on_success: never #[always|never|change]
+    on_failure: never #[always|never|change]
 #install:
 #- curl -O https://s3-us-west-2.amazonaws.com/screener-files/ci/v2.1/screener-ci.zip
 #- unzip -o screener-ci.zip

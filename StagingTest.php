@@ -2,6 +2,6 @@
 class Test extends PHPUnit_Framework_TestCase
 {
 	public function testOnePlusOne() {
-		$this->assertEquals(1+1,23);
+		$this->assertEquals(22+1,23);
   	}
 }

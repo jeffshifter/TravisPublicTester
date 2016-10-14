@@ -7,11 +7,11 @@ branches:
   - staging
   - production
 install:
-- curl -O https://s3-us-west-2.amazonaws.com/screener-files/ci/v2.1/screener-ci.zip
-- unzip -o screener-ci.zip
+#- curl -O https://s3-us-west-2.amazonaws.com/screener-files/ci/v2.1/screener-ci.zip
+#- unzip -o screener-ci.zip
 script:
 - phpunit Test.php
-- "./screener-ci.sh $SCREENER_API_KEY $SCREENER_GROUP_ID $TRAVIS_BUILD_NUMBER"
+#- "./screener-ci.sh $SCREENER_API_KEY $SCREENER_GROUP_ID $TRAVIS_BUILD_NUMBER"
 after_success:
 - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
 - "chmod a+x /tmp/travis-automerge"

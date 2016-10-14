@@ -9,7 +9,7 @@ branches:
 notifications: # set notification options, By default, a build email is sent to the committer and the author; can notify slack channel
   email: #false to disable
     recipients:
-      - mrjeffman@gmail.com
+      - jeff@powershifter.com
     on_success: always #[always|never|change]
     on_failure: always #[always|never|change]
 #install:
@@ -18,7 +18,7 @@ notifications: # set notification options, By default, a build email is sent to 
 script:
 - phpunit Test.php
 #- "./screener-ci.sh $SCREENER_API_KEY $SCREENER_GROUP_ID $TRAVIS_BUILD_NUMBER"
-- if [ "$TRAVIS_BRANCH" = "staging" ]; then phpunit Test.php; fi
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then phpunit StagingTest.php; fi
 after_success:
 - "curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge"
 - "chmod a+x /tmp/travis-automerge"

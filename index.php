@@ -1,4 +1,4 @@
 <?
 
-echo 'test4';
+echo 'test5';
 echo 'my feature';
